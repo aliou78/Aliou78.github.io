@@ -1,27 +1,76 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Portfolio de Mamadou Aliou Diallo - Étudiant en Informatique spécialisé en Analyse des Performances Digitales, développement web et intelligence artificielle.">
-    <meta name="keywords" content="Mamadou Aliou Diallo, développeur web, analyse digitale, IA, portfolio">
+    <meta name="keywords" content="Mamadou Aliou Diallo, développeur web, analyse digitale, IA, portfolio, Sénégal">
     <meta name="author" content="Mamadou Aliou Diallo">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mamadou Aliou Diallo - Portfolio">
+    <meta property="og:description"
+        content="Étudiant en Informatique spécialisé en Analyse des Performances Digitales, développement web et IA.">
+    <meta property="og:url" content="https://aliou78.github.io">
+    <meta property="og:image" content="profile.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mamadou Aliou Diallo - Portfolio">
+    <meta name="twitter:description" content="Étudiant en Informatique passionné par l'innovation digitale et l'IA.">
+
     <title>Mamadou Aliou Diallo - Portfolio | Analyse des Performances Digitales</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-inner">
+            <span class="loader-text">MAD</span>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Particules Hero -->
+    <canvas id="particles-canvas"></canvas>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
-            <a href="#accueil" class="logo">MAD</a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <a href="#accueil" class="logo" aria-label="Mamadou Aliou Diallo - Accueil">
+                <svg class="logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#6C63FF" />
+                            <stop offset="100%" stop-color="#00F5FF" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <path d="M50 5 L90 27.5 V72.5 L50 95 L10 72.5 V27.5 Z" fill="url(#hexGrad)" fill-opacity="0.1"
+                        stroke="url(#hexGrad)" stroke-width="2" />
+                    <path d="M30 65 V35 L50 55 L70 35 V65" stroke="url(#hexGrad)" stroke-width="8"
+                        stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#glow)" />
+                    <circle cx="50" cy="75" r="4" fill="#00F5FF">
+                        <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
+            </a>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#accueil" class="nav-link">Accueil</a></li>
                 <li><a href="#apropos" class="nav-link">À propos</a></li>
@@ -31,6 +80,16 @@
                 <li><a href="#langues" class="nav-link">Langues</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -38,19 +97,103 @@
     <section id="accueil" class="hero">
         <div class="container hero-container">
             <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Disponible pour des opportunités
+                </div>
                 <h1 class="hero-title">
                     <span class="greeting">Bonjour, je suis</span>
-                    <span class="name">Mamadou Aliou Diallo</span>
+                    <span class="name">Mamadou Aliou<br>Diallo</span>
                 </h1>
-                <p class="hero-subtitle">Étudiant en Informatique – Analyse des Performances Digitales</p>
-                <p class="hero-description">Passionné par l'innovation digitale, l'IA et la transformation numérique</p>
+                <p class="hero-subtitle" id="typingTarget">Étudiant en Informatique – Analyse des Performances Digitales
+                </p>
+                <p class="hero-description">Passionné par l'innovation digitale, l'IA et la transformation numérique du
+                    Sénégal 🇸🇳</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Me contacter</a>
-                    <a href="#projets" class="btn btn-secondary">Voir mes projets</a>
+                    <a href="#contact" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        Me contacter
+                    </a>
+                    <a href="#projets" class="btn btn-secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
+                        Voir mes projets
+                    </a>
+                    <a href="cv.html" target="_blank" class="btn btn-outline">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        Voir/Télécharger CV
+                    </a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com/Aliou78" target="_blank" rel="noopener noreferrer"
+                        class="hero-social-link" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mamadouadialloc" target="_blank" rel="noopener noreferrer"
+                        class="hero-social-link" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:diallomamadoualiou7875@gmail.com" class="hero-social-link" aria-label="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                    </a>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="profile-photo" role="img" aria-label="Photo de profil de Mamadou Aliou Diallo"></div>
+                <div class="profile-photo-wrapper">
+                    <div class="profile-photo" role="img" aria-label="Photo de profil de Mamadou Aliou Diallo"></div>
+                    <div class="profile-ring"></div>
+                    <div class="profile-ring ring-2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Défiler</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Section Statistiques -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="3" data-suffix="+">0</div>
+                    <div class="stat-label">Projets réalisés</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="2" data-suffix=" ans">0</div>
+                    <div class="stat-label">D'expérience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="5" data-suffix="+">0</div>
+                    <div class="stat-label">Technologies maîtrisées</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100" data-suffix="%">0</div>
+                    <div class="stat-label">Passion & Engagement</div>
+                </div>
             </div>
         </div>
     </section>
@@ -61,27 +204,44 @@
             <h2 class="section-title">À propos de moi</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Je suis étudiant en BTS Analyse des Performances Digitales à l'ISEP-AT Dakar, passionné par les
+                    <p>Je suis étudiant en <strong>BTS Analyse des Performances Digitales</strong> à l'ISEP-AT Dakar,
+                        passionné par les
                         technologies émergentes et l'innovation digitale.</p>
-                    <p>Mon parcours combine développement web, analyse de données et intelligence artificielle. Je
+                    <p>Mon parcours combine <strong>développement web</strong>, <strong>analyse de données</strong> et
+                        <strong>intelligence artificielle</strong>. Je
                         m'intéresse particulièrement à l'optimisation des systèmes digitaux et à la transformation
-                        numérique du Sénégal.</p>
+                        numérique du Sénégal.
+                    </p>
                     <p>Avec une expertise en développement front-end et back-end, ainsi qu'en analyse de données, je
                         cherche constamment à créer des solutions innovantes qui répondent aux défis du monde digital.
                     </p>
+                    <div class="about-tags">
+                        <span class="about-tag">🚀 Innovation</span>
+                        <span class="about-tag">🤖 Intelligence Artificielle</span>
+                        <span class="about-tag">📊 Data Analysis</span>
+                        <span class="about-tag">💻 Développement Web</span>
+                    </div>
                 </div>
                 <div class="about-info">
                     <div class="info-item">
-                        <span class="info-label">Email</span>
+                        <span class="info-label">📧 Email</span>
                         <span class="info-value">diallomamadoualiou7875@gmail.com</span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">Téléphone</span>
+                        <span class="info-label">📱 Téléphone</span>
                         <span class="info-value">+784270960</span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">Localisation</span>
-                        <span class="info-value">Bounkiling, Sénégal</span>
+                        <span class="info-label">📍 Localisation</span>
+                        <span class="info-value">Bounkiling, Sénégal 🇸🇳</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">🎓 Formation</span>
+                        <span class="info-value">BTS APD – ISEP-AT Dakar</span>
+                    </div>
+                    <div class="info-item last">
+                        <span class="info-label">📅 Disponibilité</span>
+                        <span class="info-value available">✅ Disponible maintenant</span>
                     </div>
                 </div>
             </div>
@@ -98,31 +258,46 @@
                     <h3 class="category-title">Développement Web</h3>
                     <ul class="skill-list">
                         <li class="skill-item">
-                            <span class="skill-name">HTML5 & CSS3</span>
+                            <div class="skill-header">
+                                <span class="skill-name">HTML5 & CSS</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="90"></div>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-header">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="85"></div>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-name">Angular & React</span>
+                            <div class="skill-header">
+                                <span class="skill-name">Angular & React</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="80"></div>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-name">Python & Django</span>
+                            <div class="skill-header">
+                                <span class="skill-name">Python & Django</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="85"></div>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-name">WordPress</span>
+                            <div class="skill-header">
+                                <span class="skill-name">WordPress</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="75"></div>
                             </div>
@@ -135,45 +310,49 @@
                     <h3 class="category-title">Analyse de données & IA</h3>
                     <ul class="skill-list">
                         <li class="skill-item">
-                            <span class="skill-name">Python</span>
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="85"></div>
                             </div>
                         </li>
+
                         <li class="skill-item">
-                            <span class="skill-name">Scikit-learn</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="75"></div>
+                            <div class="skill-header">
+                                <span class="skill-name">Machine Learning</span>
+                                <span class="skill-percent">70%</span>
                             </div>
-                        </li>
-                        <li class="skill-item">
-                            <span class="skill-name">Machine Learning</span>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="70"></div>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-name">Data Analysis</span>
+                            <div class="skill-header">
+                                <span class="skill-name">Data Analysis</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="80"></div>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-name">Excel</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="85"></div>
+                            <div class="skill-header">
+                                <span class="skill-name">Power BI</span>
+                                <span class="skill-percent">75%</span>
                             </div>
-                        </li>
-                        <li class="skill-item">
-                            <span class="skill-name">Power BI</span>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="75"></div>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-name">Power Apps</span>
+                            <div class="skill-header">
+                                <span class="skill-name">Excel avences</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-progress="70"></div>
+                                <div class="skill-progress" data-progress="85"></div>
                             </div>
                         </li>
                     </ul>
@@ -184,25 +363,38 @@
                     <h3 class="category-title">UX/UI & Outils</h3>
                     <ul class="skill-list">
                         <li class="skill-item">
-                            <span class="skill-name">Figma</span>
+                            <div class="skill-header">
+                                <span class="skill-name">Figma</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="80"></div>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-name">Git/GitHub</span>
+                            <div class="skill-header">
+                                <span class="skill-name">Git / GitHub</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="85"></div>
                             </div>
                         </li>
+
                         <li class="skill-item">
-                            <span class="skill-name">Trello</span>
+                            <div class="skill-header">
+                                <span class="skill-name">Marketing Digital</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-progress="75"></div>
+                                <div class="skill-progress" data-progress="70"></div>
                             </div>
                         </li>
                         <li class="skill-item">
-                            <span class="skill-name">Marketing Digital</span>
+                            <div class="skill-header">
+                                <span class="skill-name">Power Apps</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="70"></div>
                             </div>
@@ -221,12 +413,46 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">2023 - 2025</div>
+                        <div class="timeline-date">2023 – 2025</div>
                         <h3 class="timeline-title">BTS Analyse des Performances Digitales</h3>
-                        <p class="timeline-institution">ISEP-AT Dakar</p>
+                        <p class="timeline-institution">🏫 ISEP-AT Dakar</p>
                         <p class="timeline-description">Spécialisation en optimisation des systèmes digitaux et analyse
                             des données. Formation axée sur les performances web, l'analyse de données et les stratégies
                             digitales.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Data Analysis</span>
+                            <span class="timeline-tag">Développement Web</span>
+                            <span class="timeline-tag">IA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 – 2023</div>
+                        <h3 class="timeline-title">Baccalauréat Scientifique</h3>
+                        <p class="timeline-institution">🏫 Lycée de Bounkiling</p>
+                        <p class="timeline-description">Obtention du Baccalauréat avec mention, orienté vers les
+                            sciences et les mathématiques. Base solide pour la poursuite d'études en informatique.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Mathématiques</span>
+                            <span class="timeline-tag">Sciences</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 – Présent</div>
+                        <h3 class="timeline-title">Formations Certifiantes</h3>
+                        <p class="timeline-institution">📜 Plateformes en ligne</p>
+                        <p class="timeline-description">Diverses certifications en développement web, data science et
+                            intelligence artificielle sur des plateformes comme Coursera, OpenClassrooms et Google.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Google Analytics</span>
+                            <span class="timeline-tag">Python</span>
+                            <span class="timeline-tag">Machine Learning</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -240,9 +466,14 @@
             <div class="projects-grid">
                 <article class="project-card">
                     <div class="project-image project-image-1" role="img"
-                        aria-label="Capture d'écran du projet SamaÉcole"></div>
+                        aria-label="Capture d'écran du projet SamaÉcole">
+                        <div class="project-overlay">
+                            <a href="https://samaecole.sn" target="_blank" rel="noopener noreferrer"
+                                class="overlay-btn">Voir le projet →</a>
+                        </div>
+                    </div>
                     <div class="project-content">
-                        <h3 class="project-title">SamaÉcole - Plateforme de Gestion Scolaire</h3>
+                        <h3 class="project-title">SamaÉcole – Plateforme de Gestion Scolaire</h3>
                         <p class="project-description">Développement d'une plateforme de gestion scolaire moderne pour
                             les établissements éducatifs du Sénégal. Système complet avec gestion des élèves,
                             enseignants et communication.</p>
@@ -258,9 +489,13 @@
 
                 <article class="project-card">
                     <div class="project-image project-image-2" role="img"
-                        aria-label="Capture d'écran du projet SAMA PLAINTES"></div>
+                        aria-label="Capture d'écran du projet SAMA PLAINTES">
+                        <div class="project-overlay">
+                            <span class="overlay-btn coming">En développement</span>
+                        </div>
+                    </div>
                     <div class="project-content">
-                        <h3 class="project-title">SAMA PLAINTES - Plateforme Citoyenne</h3>
+                        <h3 class="project-title">SAMA PLAINTES – Plateforme Citoyenne</h3>
                         <p class="project-description">Plateforme officielle qui permet aux citoyens sénégalais de
                             déposer et suivre leurs plaintes concernant les services publics de manière transparente et
                             sécurisée.</p>
@@ -269,15 +504,19 @@
                             <span class="tag">Django</span>
                             <span class="tag">Service Public</span>
                         </div>
-                        <a href="#" class="project-link">Voir le projet →</a>
+                        <span class="project-link muted">En cours de développement</span>
                     </div>
                 </article>
 
                 <article class="project-card">
                     <div class="project-image project-image-3" role="img"
-                        aria-label="Capture d'écran du projet MonBudget"></div>
+                        aria-label="Capture d'écran du projet MonBudget">
+                        <div class="project-overlay">
+                            <span class="overlay-btn coming">En développement</span>
+                        </div>
+                    </div>
                     <div class="project-content">
-                        <h3 class="project-title">MonBudget - Gestion des Dépenses</h3>
+                        <h3 class="project-title">MonBudget – Gestion des Dépenses</h3>
                         <p class="project-description">Suivez intelligemment vos dépenses quotidiennes avec des
                             statistiques visuelles et un tableau de bord intuitif pour une meilleure gestion financière.
                         </p>
@@ -286,7 +525,7 @@
                             <span class="tag">Python</span>
                             <span class="tag">Data Viz</span>
                         </div>
-                        <a href="#" class="project-link">Voir le projet →</a>
+                        <span class="project-link muted">En cours de développement</span>
                     </div>
                 </article>
             </div>
@@ -308,6 +547,7 @@
                     <div class="language-bar">
                         <div class="language-progress" data-level="95"></div>
                     </div>
+                    <span class="language-badge">Courant</span>
                 </div>
                 <div class="language-card">
                     <div class="language-icon">🇵🇹</div>
@@ -316,6 +556,7 @@
                     <div class="language-bar">
                         <div class="language-progress" data-level="60"></div>
                     </div>
+                    <span class="language-badge">Intermédiaire</span>
                 </div>
                 <div class="language-card">
                     <div class="language-icon">🇬🇧</div>
@@ -324,6 +565,7 @@
                     <div class="language-bar">
                         <div class="language-progress" data-level="65"></div>
                     </div>
+                    <span class="language-badge">Intermédiaire</span>
                 </div>
             </div>
 
@@ -337,6 +579,7 @@
                     <div class="language-bar">
                         <div class="language-progress" data-level="100"></div>
                     </div>
+                    <span class="language-badge native">Natif</span>
                 </div>
                 <div class="language-card">
                     <div class="language-icon">🗣️</div>
@@ -345,6 +588,7 @@
                     <div class="language-bar">
                         <div class="language-progress" data-level="90"></div>
                     </div>
+                    <span class="language-badge">Courant</span>
                 </div>
             </div>
         </div>
@@ -358,7 +602,7 @@
                 <div class="contact-info">
                     <h3 class="contact-subtitle">Restons en contact</h3>
                     <p class="contact-description">N'hésitez pas à me contacter pour discuter de vos projets ou
-                        opportunités de collaboration.</p>
+                        opportunités de collaboration. Je réponds rapidement !</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <div class="contact-icon">📧</div>
@@ -379,29 +623,63 @@
                             <div class="contact-icon">📍</div>
                             <div>
                                 <p class="contact-label">Localisation</p>
-                                <p class="contact-value">Bounkiling, Sénégal</p>
+                                <p class="contact-value">Bounkiling, Sénégal 🇸🇳</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">💼</div>
+                            <div>
+                                <p class="contact-label">LinkedIn</p>
+                                <a href="https://www.linkedin.com/in/mamadouadialloc" target="_blank"
+                                    rel="noopener noreferrer" class="contact-value">mamadouadialloc</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🐙</div>
+                            <div>
+                                <p class="contact-label">GitHub</p>
+                                <a href="https://github.com/Aliou78" target="_blank" rel="noopener noreferrer"
+                                    class="contact-value">Aliou78</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" novalidate>
                     <div class="form-group">
-                        <label for="name">Nom complet</label>
-                        <input type="text" id="name" name="name" required aria-required="true">
+                        <label for="name">Nom complet <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="Votre nom complet" required
+                            aria-required="true">
+                        <span class="form-error" id="nameError"></span>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required aria-required="true">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="votre@email.com" required
+                            aria-required="true">
+                        <span class="form-error" id="emailError"></span>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Sujet</label>
-                        <input type="text" id="subject" name="subject" required aria-required="true">
+                        <label for="subject">Sujet <span class="required">*</span></label>
+                        <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" required
+                            aria-required="true">
+                        <span class="form-error" id="subjectError"></span>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="5" placeholder="Votre message..." required
+                            aria-required="true"></textarea>
+                        <span class="form-error" id="messageError"></span>
                     </div>
-                    <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                    <button type="submit" class="btn btn-submit" id="submitBtn">
+                        <span class="btn-text">Envoyer le message</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                    </button>
+                    <div class="form-success" id="formSuccess">
+                        ✅ Votre message a été envoyé avec succès !
+                    </div>
                 </form>
             </div>
         </div>
